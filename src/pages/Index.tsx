@@ -18,6 +18,7 @@ import after3 from "@/assets/after-3.jpg";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Transformation from "@/components/Transformation";
+import UploadSection from "@/components/UploadSection";
 
 const Index = () => {
   const [images, setImages] = useState<File[]>([]);
@@ -54,6 +55,11 @@ const Index = () => {
       <Hero />
       <HowItWorks />
       <Transformation />
+      <UploadSection
+        email={email}
+        onEmailChange={setEmail}
+        onImagesChange={setImages}
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"></div>
