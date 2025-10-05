@@ -113,21 +113,10 @@ const Index = () => {
               <PricingCard title="Plano Básico" price="R$ 7,00" photosCount={25} isSelected={selectedPlan === "basico"} onSelect={() => setSelectedPlan("basico")} disabled={images.length !== 2} />
               <PricingCard title="Plano Premium" price="R$ 12,00" photosCount={45} isPopular isSelected={selectedPlan === "premium"} onSelect={() => setSelectedPlan("premium")} disabled={images.length !== 2} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Button variant="hero" size="lg" className="w-full text-lg h-auto" onClick={handlePayment} disabled={!selectedPlan || images.length !== 2}>
-                <Zap className="w-5 h-5 mr-2" />
-                Pagar com Cartão
-              </Button>
-              <Button 
-                size="lg" 
-                className="w-full text-lg bg-green-100 text-green-800 hover:bg-green-200 px-6 py-3 rounded-lg h-auto flex items-center justify-center"
-                onClick={handlePayment} 
-                disabled={!selectedPlan || images.length !== 2}
-              >
-                <span className="mr-2">🅿️</span>
-                Pagar com PIX
-              </Button>
-            </div>
+            <Button variant="hero" size="lg" className="w-full text-lg" onClick={handlePayment} disabled={!selectedPlan || images.length !== 2}>
+              <Zap className="w-5 h-5" />
+              Pagar com Cartão e Gerar
+            </Button>
           </div>
         </section>
       )}
