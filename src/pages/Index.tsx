@@ -18,7 +18,6 @@ import after3 from "@/assets/after-3.jpg";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Transformation from "@/components/Transformation";
-import UploadSection from "@/components/UploadSection";
 import PricingFaq from "@/components/PricingFaq";
 
 const Index = () => {
@@ -56,11 +55,6 @@ const Index = () => {
       <Hero />
       <HowItWorks />
       <Transformation />
-      <UploadSection
-        email={email}
-        onEmailChange={setEmail}
-        onImagesChange={setImages}
-      />
       <PricingFaq />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
