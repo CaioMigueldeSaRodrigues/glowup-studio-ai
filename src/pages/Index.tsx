@@ -15,6 +15,7 @@ import before2 from "@/assets/before-2.jpg";
 import after2 from "@/assets/after-2.jpg";
 import before3 from "@/assets/before-3.jpg";
 import after3 from "@/assets/after-3.jpg";
+import Hero from "@/components/Hero";
 
 const Index = () => {
   const [images, setImages] = useState<File[]>([]);
@@ -48,6 +49,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Hero />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"></div>
