@@ -24,7 +24,7 @@ const Index = () => {
   const [images, setImages] = useState<File[]>([]);
   const [email, setEmail] = useState("");
   const [selectedPlan, setSelectedPlan] = useState<"basico" | "premium" | null>(null);
-  const [showUploadSection, setShowUploadSection] = useState(false);
+  const [showUploadArea, setShowUploadArea] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -68,7 +68,7 @@ const Index = () => {
             Use nossa Inteligência Artificial para gerar mais de 25 fotos profissionais em minutos.
             Impressione no LinkedIn, em seu portfólio e em suas redes.
           </p>
-          <Button variant="hero" size="lg" onClick={() => setShowUploadSection(true)} className="text-lg px-12 py-6 h-auto">
+          <Button variant="hero" size="lg" onClick={() => setShowUploadArea(true)} className="text-lg px-12 py-6 h-auto">
             <Sparkles className="w-6 h-6" />
             Gerar Minhas Fotos Agora
           </Button>
@@ -111,7 +111,7 @@ const Index = () => {
       </section>
 
       {/* Upload & Pricing */}
-      {showUploadSection && (
+      {showUploadArea && (
         <section id="upload" className="py-20 px-4">
           <div className="max-w-4xl mx-auto space-y-12">
             <h2 className="text-3xl md:text-4xl font-bold text-center">Crie Suas Fotos Profissionais</h2>
