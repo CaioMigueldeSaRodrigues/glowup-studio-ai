@@ -103,7 +103,6 @@ const Index = () => {
                   <step.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -113,13 +112,15 @@ const Index = () => {
       {/* Upload & Pricing */}
       {showUploadArea && (
         <section id="upload" className="py-20 px-4">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-center">Crie Suas Fotos Profissionais</h2>
-            <UploadArea onImagesChange={setImages} />
-            <Input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="glass" />
-            <div className="grid md:grid-cols-2 gap-6">
-              <PricingCard title="Plano Básico" price="R$ 7,00" photosCount={25} isSelected={selectedPlan === "basico"} onSelect={() => setSelectedPlan("basico")} disabled={images.length !== 2} />
-              <PricingCard title="Plano Premium" price="R$ 12,00" photosCount={45} isPopular isSelected={selectedPlan === "premium"} onSelect={() => setSelectedPlan("premium")} disabled={images.length !== 2} />
+          <div className="max-w-5xl mx-auto space-y-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">Crie Suas Fotos Profissionais</h2>
+            <div className="space-y-8">
+              <UploadArea onImagesChange={setImages} />
+              <Input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="glass" />
+              <div className="grid md:grid-cols-2 gap-6">
+                <PricingCard title="Plano Básico" price="R$ 7,00" photosCount={25} isSelected={selectedPlan === "basico"} onSelect={() => setSelectedPlan("basico")} disabled={images.length !== 2} />
+                <PricingCard title="Plano Premium" price="R$ 12,00" photosCount={45} isPopular isSelected={selectedPlan === "premium"} onSelect={() => setSelectedPlan("premium")} disabled={images.length !== 2} />
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Button variant="hero" size="lg" className="w-full text-lg h-auto" onClick={handlePayment} disabled={!selectedPlan || images.length !== 2}>
