@@ -18,13 +18,13 @@ import after3 from "@/assets/after-3.jpg";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Transformation from "@/components/Transformation";
-import PricingFaq from "@/components/PricingFaq";
+import UploadSection from "@/components/UploadSection";
 
 const Index = () => {
   const [images, setImages] = useState<File[]>([]);
   const [email, setEmail] = useState("");
   const [selectedPlan, setSelectedPlan] = useState<"basico" | "premium" | null>(null);
-  const [showUploadArea, setShowUploadArea] = useState(false);
+  const [showUploadSection, setShowUploadSection] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -55,7 +55,11 @@ const Index = () => {
       <Hero />
       <HowItWorks />
       <Transformation />
-      <PricingFaq />
+      <UploadSection
+        email={email}
+        onEmailChange={setEmail}
+        onImagesChange={setImages}
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"></div>
@@ -68,7 +72,7 @@ const Index = () => {
             Use nossa Inteligência Artificial para gerar mais de 25 fotos profissionais em minutos.
             Impressione no LinkedIn, em seu portfólio e em suas redes.
           </p>
-          <Button variant="hero" size="lg" onClick={() => setShowUploadArea(true)} className="text-lg px-12 py-6 h-auto">
+          <Button variant="hero" size="lg" onClick={() => setShowUploadSection(true)} className="text-lg px-12 py-6 h-auto">
             <Sparkles className="w-6 h-6" />
             Gerar Minhas Fotos Agora
           </Button>
@@ -103,6 +107,7 @@ const Index = () => {
                   <step.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">{step.title}</h3>
+                <p className="text-muted-foreground">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -110,17 +115,15 @@ const Index = () => {
       </section>
 
       {/* Upload & Pricing */}
-      {showUploadArea && (
+      {showUploadSection && (
         <section id="upload" className="py-20 px-4">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground">Crie Suas Fotos Profissionais</h2>
-            <div className="space-y-8">
-              <UploadArea onImagesChange={setImages} />
-              <Input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="glass" />
-              <div className="grid md:grid-cols-2 gap-6">
-                <PricingCard title="Plano Básico" price="R$ 7,00" photosCount={25} isSelected={selectedPlan === "basico"} onSelect={() => setSelectedPlan("basico")} disabled={images.length !== 2} />
-                <PricingCard title="Plano Premium" price="R$ 12,00" photosCount={45} isPopular isSelected={selectedPlan === "premium"} onSelect={() => setSelectedPlan("premium")} disabled={images.length !== 2} />
-              </div>
+          <div className="max-w-4xl mx-auto space-y-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center">Crie Suas Fotos Profissionais</h2>
+            <UploadArea onImagesChange={setImages} />
+            <Input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="glass" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <PricingCard title="Plano Básico" price="R$ 7,00" photosCount={25} isSelected={selectedPlan === "basico"} onSelect={() => setSelectedPlan("basico")} disabled={images.length !== 2} />
+              <PricingCard title="Plano Premium" price="R$ 12,00" photosCount={45} isPopular isSelected={selectedPlan === "premium"} onSelect={() => setSelectedPlan("premium")} disabled={images.length !== 2} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Button variant="hero" size="lg" className="w-full text-lg h-auto" onClick={handlePayment} disabled={!selectedPlan || images.length !== 2}>
