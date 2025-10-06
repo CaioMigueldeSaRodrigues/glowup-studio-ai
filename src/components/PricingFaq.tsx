@@ -55,73 +55,75 @@ const PricingFaq: React.FC<PricingFaqProps> = ({ onPayment }) => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Card Payment Option */}
-              <div className={`bg-background-secondary p-8 rounded-xl shadow-sm border-2 transition-all ${
+              <div className={`bg-background-secondary p-6 rounded-xl border transition-all ${
                 selectedMethod === 'card' 
                   ? 'border-primary ring-2 ring-primary' 
                   : 'border-slate-800 hover:border-primary/50'
               }`}>
-                <div className="flex items-center justify-center mb-6">
+                <div className="flex items-center justify-center mb-4">
                   <div className="p-3 bg-primary/10 rounded-full">
-                    <CreditCard className="w-8 h-8 text-primary" />
+                    <CreditCard className="w-6 h-6 text-primary" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-center mb-4 text-foreground">Cartão de Crédito</h3>
-                <ul className="space-y-3 mb-8">
+                <h3 className="text-xl font-bold text-center mb-4 text-foreground">Cartão de Crédito</h3>
+                <ul className="space-y-2 mb-6">
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">Até 12x no cartão</span>
+                    <Check className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">Até 12x no cartão</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">Processamento seguro</span>
+                    <Check className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">Processamento seguro</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">Aprovação em segundos</span>
+                    <Check className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">Aprovação em segundos</span>
                   </li>
                 </ul>
                 <Button 
                   onClick={() => handlePaymentMethod('card')}
                   variant={selectedMethod === 'card' ? 'default' : 'outline'}
-                  className="w-full py-6 text-lg bg-slate-800 hover:bg-slate-700"
+                  className="w-full py-4 text-md"
+                  disabled={!selectedPlan}
                 >
-                  <CreditCard className="w-5 h-5 mr-2" />
+                  <CreditCard className="w-4 h-4 mr-2" />
                   Pagar com Cartão
                 </Button>
               </div>
 
               {/* PIX Payment Option */}
-              <div className={`bg-background-secondary p-8 rounded-xl shadow-sm border-2 transition-all ${
+              <div className={`bg-background-secondary p-6 rounded-xl border-2 transition-all ${
                 selectedMethod === 'pix' 
-                  ? 'border-primary ring-2 ring-primary' 
-                  : 'border-slate-800 hover:border-primary/50'
+                  ? 'border-green-500 ring-2 ring-green-500/30' 
+                  : 'border-green-500/50 hover:border-green-500/80'
               }`}>
-                <div className="flex items-center justify-center mb-6">
+                <div className="flex items-center justify-center mb-4">
                   <div className="p-3 bg-green-50 rounded-full">
-                    <QrCode className="w-8 h-8 text-green-600" />
+                    <QrCode className="w-6 h-6 text-green-600" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-center mb-4 text-foreground">PIX</h3>
-                <ul className="space-y-3 mb-8">
+                <h3 className="text-xl font-bold text-center mb-4 text-foreground">PIX</h3>
+                <ul className="space-y-2 mb-6">
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">5% de desconto</span>
+                    <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">5% de desconto</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">Pagamento instantâneo</span>
+                    <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">Pagamento instantâneo</span>
                   </li>
                   <li className="flex items-center">
-                    <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-foreground/90">Sem juros</span>
+                    <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                    <span className="text-foreground/90 text-sm">Sem juros</span>
                   </li>
                 </ul>
                 <Button 
                   onClick={() => handlePaymentMethod('pix')}
                   variant={selectedMethod === 'pix' ? 'default' : 'outline'}
-                  className="w-full py-6 text-lg bg-slate-800 hover:bg-slate-700 text-foreground"
+                  className="w-full py-4 text-md bg-green-600 hover:bg-green-700 text-white border-green-600 hover:border-green-700"
+                  disabled={!selectedPlan}
                 >
-                  <QrCode className="w-5 h-5 mr-2" />
+                  <QrCode className="w-4 h-4 mr-2" />
                   Pagar com PIX
                 </Button>
               </div>
