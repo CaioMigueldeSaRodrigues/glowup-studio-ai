@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { CreditCard, QrCode, Check } from 'lucide-react';
 import { PricingCard } from './PricingCard';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 interface PricingFaqProps {
   onPayment: (method: 'card' | 'pix') => void;
@@ -130,6 +136,41 @@ const PricingFaq: React.FC<PricingFaqProps> = ({ onPayment }) => {
             </div>
           </div>
         )}
+
+        {/* FAQ Section */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-left">
+                  Quais tipos de fotos devo enviar?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Para garantir os melhores resultados, envie 2 fotos tipo selfie onde seu rosto esteja bem iluminado (luz natural é ideal), visível e centralizado. Evite óculos escuros, chapéus ou filtros que alterem suas feições. Fundos simples funcionam melhor.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="text-left">
+                  Em quanto tempo recebo as imagens?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Quase instantaneamente. Nosso processo é 100% automatizado. Assim que o pagamento for confirmado, nossa IA começa a trabalhar, e você receberá um e-mail com o link para suas novas fotos em até 10 minutos.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="text-left">
+                  Meus dados estão seguros?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Sim, segurança e privacidade são nossa prioridade máxima. Suas fotos são usadas apenas para a geração das imagens e são deletadas permanentemente dos nossos servidores após 24 horas. Não vendemos nem compartilhamos seus dados com terceiros.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
       </div>
     </section>
   );
