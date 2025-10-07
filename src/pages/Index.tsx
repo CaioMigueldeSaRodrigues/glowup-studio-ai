@@ -15,9 +15,8 @@ const Index = () => {
     uploadSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handlePayment = async (method: 'card' | 'pix') => {
+  const handlePayment = async (method: 'card' | 'pix', selectedPlan?: string) => {
     console.log("Método de pagamento selecionado:", method);
-    // ... rest of the validation function ...
     
     if (images.length !== 2) {
       // Show error toast
@@ -28,11 +27,28 @@ const Index = () => {
       return;
     }
     
-    // Proceed with payment based on method
-    if (method === 'pix') {
-      // Handle PIX payment
-    } else {
-      // Handle card payment
+    try {
+      const response = await fetch('https://n8n.ampliview.com.br/webhook-test/25173d82-f193-4f6b-ab71-d7ea46ca2d4c', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          selectedPlan,
+          paymentMethod: method
+        })
+      });
+
+      if (response.ok) {
+        window.location.href = '/obrigado';
+      } else {
+        throw new Error('Falha na requisição');
+      }
+    } catch (error) {
+      console.error('Erro ao processar pagamento:', error);
+      // Show error toast
+      // toast.error('Falha ao conectar com o servidor. Tente novamente.');
     }
   };
 

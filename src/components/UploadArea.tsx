@@ -1,12 +1,15 @@
 import { useState, useCallback } from "react";
 import { Upload, X, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
 
 interface UploadAreaProps {
   onImagesChange: (images: File[]) => void;
+  email: string;
+  onEmailChange: (value: string) => void;
 }
 
-export const UploadArea = ({ onImagesChange }: UploadAreaProps) => {
+export const UploadArea = ({ onImagesChange, email, onEmailChange }: UploadAreaProps) => {
   const [images, setImages] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -163,6 +166,17 @@ export const UploadArea = ({ onImagesChange }: UploadAreaProps) => {
           </div>
         </div>
       )}
+
+      {/* Email Input */}
+      <div className="mt-6">
+        <Input
+          type="email"
+          placeholder="Seu e-mail"
+          value={email}
+          onChange={(e) => onEmailChange(e.target.value)}
+          className="w-full"
+        />
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/accordion';
 
 interface PricingFaqProps {
-  onPayment: (method: 'card' | 'pix') => void;
+  onPayment: (method: 'card' | 'pix', selectedPlan?: string) => void;
 }
 
 const PricingFaq: React.FC<PricingFaqProps> = ({ onPayment }) => {
@@ -24,7 +24,7 @@ const PricingFaq: React.FC<PricingFaqProps> = ({ onPayment }) => {
 
   const handlePaymentMethod = (method: 'card' | 'pix') => {
     setSelectedMethod(method);
-    onPayment(method);
+    onPayment(method, selectedPlan || '');
   };
 
   return (
